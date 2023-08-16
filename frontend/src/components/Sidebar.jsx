@@ -154,7 +154,7 @@ export default function SideBar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Administracion Gym
+            Recepcion Gym
           </Typography>
         </Toolbar>
       </AppBar>

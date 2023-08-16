@@ -7,23 +7,44 @@ const membersSchema = mongoose.Schema( {
         type: String,
         required: true
     }, 
+    telephone: { 
+        type: Number,
+        required: true
+    },
+    dni: { 
+        type: Number,
+        required: true
+    },
+    gender: { 
+        type: String,
+        required: true
+    },
     dischargeDate: { 
         type: String,
         required: true,
+    },
+    membership: { 
+        type: String,
+        required: true
+    },
+    medicalRestrictions: { 
+        type: String,
+        required: true
     },
     lastPay: { 
         type: String, 
         required: true
     },
-    nextPay: {
-        type: Number
+    dueDate: {
+        type: Date
     },
-    PurchaseQuantity: { 
-        type: String
+    debtor: { 
+        type: Boolean
     },
-    telephone: { 
-        type: Number
-    }
+    upToDate: { 
+        type: Boolean
+    },
+
 })
 
 const Members = mongoose.model("Members", membersSchema)

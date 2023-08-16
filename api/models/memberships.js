@@ -2,27 +2,22 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 
-const classesSchema = mongoose.Schema( { 
+const membershipsSchema = mongoose.Schema( { 
    name: { 
     type: String,
     required: true
    },
-   teacher: { 
+   value: { 
     type: Date,
     required: true
    },
-   schedule: { 
-    type: Number,
-    required: true
-   },
-   image: { 
+   characteristics: { 
     type: String,
     required: true
    }
 
-
 })
 
-const Classes = mongoose.model("Classes", classesSchema)
+const Memberships = mongoose.model("Memberships", membershipsSchema)
 
-export default Classes;
+export default Memberships;

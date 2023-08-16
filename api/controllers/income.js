@@ -1,0 +1,1 @@
+import Income from "../models/income.js";

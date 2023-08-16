@@ -7,7 +7,7 @@ import providersRoutes from "./routes/providers.routes.js"
 import membersRoutes from "./routes/members.routes.js"
 import incomeRoutes from "./routes/income.routes.js"
 import expensesRoutes from "./routes/expenses.routes.js"
-import classesRoutes from "./routes/classes.routes.js"
+import classesAndMembershipsRoutes from "./routes/classesAndMemberships.routes.js"
 
 const app = express()
 const port = 4000
@@ -26,7 +26,7 @@ app.use(providersRoutes)
 app.use(membersRoutes)
 app.use(incomeRoutes)
 app.use(expensesRoutes)
-app.use(classesRoutes)
+app.use(classesAndMembershipsRoutes)
 
 
 app.get('/', (req, res) => {

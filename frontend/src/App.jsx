@@ -21,19 +21,18 @@ function App() {
     <>
       <div className='app'>
          <Sidebar />
-
-         <Routes>
-            <Route path='/main' element={<Main/>}></Route>
-            <Route path='/members' element={<Members/>}></Route>
-            <Route path='/addNewMember' element={<AddNewMember/>}></Route>
-            <Route path='/incomes' element={<Incomes/>}></Route>
-            <Route path='/expenses' element={<Expenses/>}></Route>
-            <Route path='/classes' element={<Classes/>}></Route>
-            <Route path='/providers' element={<Providers/>}></Route>
-            <Route path='/staff' element={<Staff/>}></Route>
-            <Route path='/config' element={<Config/>}></Route>
-             <Route path='/profile' element={<Profile/>}></Route>
-         </Routes>
+            <Routes>
+                <Route path='/main' element={<Main/>}></Route>
+                <Route path='/members' element={<Members/>}></Route>
+                <Route path='/addNewMember' element={<AddNewMember/>}></Route>
+                <Route path='/incomes' element={<Incomes/>}></Route>
+                <Route path='/expenses' element={<Expenses/>}></Route>
+                <Route path='/classes' element={<Classes/>}></Route>
+                <Route path='/providers' element={<Providers/>}></Route>
+                <Route path='/staff' element={<Staff/>}></Route>
+                <Route path='/config' element={<Config/>}></Route>
+                <Route path='/profile' element={<Profile/>}></Route>
+            </Routes>
 
       </div>
     </>

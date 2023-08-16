@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { trusted } from "mongoose";
 const { Schema } = mongoose;
 
 
@@ -16,6 +16,10 @@ const membersSchema = mongoose.Schema( {
         required: true
     },
     gender: { 
+        type: String,
+        required: true
+    },
+    adress: { 
         type: String,
         required: true
     },

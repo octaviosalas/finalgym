@@ -1,9 +1,10 @@
-import React from 'react'
+import * as React from 'react';
+
 
 const Main = () => {
   return (
     <div>
-       aa
+         <h2>Inicio</h2>
     </div>
   )
 }

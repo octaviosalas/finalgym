@@ -9,6 +9,7 @@ const membersSchema = mongoose.Schema( {
     }, 
     telephone: { 
         type: Number,
+        required: true
      
     },
     dni: { 

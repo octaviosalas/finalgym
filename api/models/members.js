@@ -9,45 +9,45 @@ const membersSchema = mongoose.Schema( {
     }, 
     telephone: { 
         type: Number,
-        required: true
+     
     },
     dni: { 
         type: Number,
-        required: true
+       
     },
     gender: { 
         type: String,
-        required: true
+     
     },
     adress: { 
         type: String,
-        required: true
+     
     },
     dischargeDate: { 
         type: String,
-        required: true,
+      
     },
     membership: { 
         type: String,
-        required: true
+
     },
     medicalRestrictions: { 
-        type: String,
-        required: true
+        type: String
     },
     lastPay: { 
-        type: String, 
-        required: true
+        type: String,
     },
     dueDate: {
         type: Date
     },
     debtor: { 
-        type: Boolean
+        type: Boolean,
+        default: false
     },
     upToDate: { 
-        type: Boolean
-    },
+        type: Boolean,
+        default: true
+    }
 
 })
 

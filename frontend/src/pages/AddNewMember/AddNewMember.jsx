@@ -17,6 +17,7 @@ import Typography from '@mui/material/Typography';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import TextField from '@mui/material/TextField';
 import Checkbox from '@mui/material/Checkbox';
+import axios from "axios"
 
 
 
@@ -26,11 +27,34 @@ const AddNewMember = () => {
   const [name, setName] = useState("")
   const [telephone, setTelephone] = useState("")
   const [dni, setDni] = useState("")
+  const [gender, setGender] = useState("")
   const [startDate, setStartDate] = useState("")
   const [dueDate, setDueDate] = useState("")
   const [membership, setMembership] = useState("")
+  const [adress, setAdress] = useState("")
   const [medicalRestrictions, setMedicalRestrictions] = useState("")
   const [hasMedicalRestrictions, setHasMedicalRestrictions] = useState(false)
+
+  const addNewUser = () => { 
+    const newUserData = ({
+      name: name,
+      telephone: telephone,
+      dni: dni,
+      gender: gender,
+      adress: adress,
+      startDate: startDate,
+      dueDate: dueDate,
+      membership: membership,
+      medicalRestrictions: medicalRestrictions,
+    }) 
+    axios.post("http://localhost:4000/addNewMember", newUserData)
+         .then((res) => { 
+          console.log(res.data)
+         })
+         .catch((err) => { 
+          console.log(err)
+         })
+  }
 
 
 function AddressForm() {
@@ -39,7 +63,7 @@ function AddressForm() {
             <Typography variant="h6" gutterBottom>
               Personal Information
             </Typography>
-      <Grid container spacing={3}>
+        <Grid container spacing={3}>
             <Grid item xs={12} sm={12}>
               <TextField required id="lastName" name="lastName" label="Complete Name" fullWidth autoComplete="family-name" variant="standard" onChange={(e) => setName(e.target.value)}/>
             </Grid>
@@ -52,10 +76,14 @@ function AddressForm() {
               <TextField id="dni" type='number' name="dni" label="DNI" fullWidth autoComplete="shipping address-line2" variant="standard" onChange={(e) => setDni(e.target.value)}/>
             </Grid>
 
+            <Grid item xs={12}>
+              <TextField id="adress" type='text' name="adress" label="adress" fullWidth autoComplete="shipping address-line2" variant="standard" onChange={(e) => setAdress(e.target.value)}/>
+            </Grid>
+
             <Grid item xs={12} sm={12}>
               <TextField required type='select'  id="gender" name="gender" label="Gender" fullWidth autoComplete="shipping address-level2"  variant="standard" onChange={(e) => setGender(e.target.value)}/>
             </Grid>
-      </Grid>
+        </Grid>
     </React.Fragment>
   );
 }
@@ -77,13 +105,24 @@ function PaymentForm() {
         </Grid>
         <Grid item xs={12} md={6} mt={2}>
         <Typography>Membership</Typography>
-          <select required  id="expDate"  fullWidth autoComplete="cc-exp" variant="standard" onChange={(e) => setMembership(e.target.value)}/>
+          <select required  id="expDate"  fullWidth autoComplete="cc-exp" variant="standard" onChange={(e) => setMembership(e.target.value)}>
+              <option></option> 
+              <option>a</option> 
+              <option>b</option> 
+              <option>c</option> 
+              <option>d</option> 
+          </select>
         </Grid>
         <Grid item xs={12} md={6} mt={2}>
           <Typography>Medical Restrictions</Typography>
-           <input type="checkbox" className="checkbox m-2"  checked={hasMedicalRestrictions}  onChange={() => setHasMedicalRestrictions(!hasMedicalRestrictions)}/>
+           <input type="checkbox" className="checkbox m-2"  checked={hasMedicalRestrictions}  onChange={() => setHasMedicalRestrictions(!hasMedicalRestrictions) && setMedicalRestrictions("No")}/>
         </Grid>
-        {hasMedicalRestrictions ? <textarea></textarea> : null}
+
+        {hasMedicalRestrictions ?  
+          <Grid item xs={12} md={16} mt={2}>
+            <textarea onChange={((e) => setMedicalRestrictions(e.target.value))} className="border border-t-blue-600 text-center w-full" placeholder='Describe Restrictions'></textarea> 
+          </Grid>
+           : null}
         
       </Grid>
     </React.Fragment>
@@ -110,11 +149,14 @@ function getStepContent(step) {
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
+    addNewUser()
   };
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+
+
 
   return (
       <React.Fragment>
@@ -124,11 +166,7 @@ function getStepContent(step) {
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h1" variant="h4" align="center">  New User </Typography>
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
-            {steps.map((label) => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            ))}
+            {steps.map((label) => (  <Step key={label}>  <StepLabel>{label}</StepLabel>  </Step>   ))}
           </Stepper>
           {activeStep === steps.length ? (
             <React.Fragment>

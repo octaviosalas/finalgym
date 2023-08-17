@@ -8,6 +8,7 @@ import membersRoutes from "./routes/members.routes.js"
 import incomeRoutes from "./routes/income.routes.js"
 import expensesRoutes from "./routes/expenses.routes.js"
 import classesAndMembershipsRoutes from "./routes/classesAndMemberships.routes.js"
+import connectDataBase from "./database/connectdb.js"
 
 const app = express()
 const port = 4000
@@ -35,4 +36,5 @@ app.get('/', (req, res) => {
 
 app.listen(4000, () => { 
     console.log(`Sever NodeJs at AdminGymApp is connected Correctly at Port ${port}`)
+    connectDataBase()
 })

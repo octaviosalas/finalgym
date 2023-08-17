@@ -38,26 +38,17 @@ export const addNewUser = async (req, res) => {
         
 }
 
-/*
-const newUserToBeSaved = new Members ({ 
-            name: name,
-            telephone: telephone,
-            dni: dni,
-            gender: gender,
-            dischargeDate: startDate,
-            dueDate: dueDate,
-            adress: adress,
-            email: email,
-            lastPay: startDate,
-            membership: membership,
-            medicalRestrictions: medicalRestrictions
-        })
-        await newUserToBeSaved.save()
-                     .then((correct) => { 
-                        if(name.length === 0) 
-                         res.json({message: "User has been Saved Correctly", correct})
-                     })
-                     .catch((err) => { 
-                        console.log(err)
-                     })
-*/
+export const getMemberByDni = async (req, res) => { 
+    const dni = parseInt(req.params.dni);
+    console.log("El DNI que llego es :" + dni)
+  
+    Members.find({
+      $or: [
+        { dni: dni }
+      ]
+    })
+      .then((results) => {
+        res.json(results);
+      })
+      .catch((err) => console.log(err));
+}

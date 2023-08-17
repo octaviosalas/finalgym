@@ -69,7 +69,7 @@ const AddNewMember = () => {
 
   return ( 
             <div className='mt-0'>
-                <div class="border border-s-8 border-y-8 rounded-xl flex 2xl:w-[600px] min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+                <div class="border border-s-8 border-y-8 rounded-xl flex 2xl:w-[600px] xl:w-[580px] lg:w-[500px] md:w-[500px] sm:w-[450px] xxs:2-[300px] xxxs:w-[290px] min-h-full flex-col justify-center px-6 py-12 lg:px-8">
                     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
                         <img class="mx-auto h-20 w-auto" src={addUser} alt="Your Company"/>
                         <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Add New User</h2>

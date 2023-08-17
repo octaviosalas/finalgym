@@ -15,6 +15,9 @@ const membersSchema = mongoose.Schema( {
         type: Number,
        
     },
+    email: { 
+        type: String
+    },
     gender: { 
         type: String,
      
@@ -38,7 +41,7 @@ const membersSchema = mongoose.Schema( {
         type: String,
     },
     dueDate: {
-        type: Date
+        type: String
     },
     debtor: { 
         type: Boolean,

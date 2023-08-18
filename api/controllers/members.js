@@ -52,3 +52,31 @@ export const getMemberByDni = async (req, res) => {
       })
       .catch((err) => console.log(err));
 }
+
+export const getAllMembers = async (req, res) => { 
+   
+  Members.find()
+         .then((mem) => { 
+            res.send(mem)
+         })
+         .catch((err) => { 
+          console.log(err)
+         })
+
+}
+export const updateMemberPay = async (req, res) => { 
+    
+  const {dni} = req.params
+  console.log(dni)
+
+   try {
+       await Members.findOneAndUpdate({dni: dni}, { 
+        lastPay: req.body.paymentDate,
+        debtor: false
+       })
+       res.json({message:"The task was marked as Done! Congratulations"})
+   } catch (err) {
+      res.send(err)
+   }
+}
+

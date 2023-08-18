@@ -8,6 +8,7 @@ import userMembership from "../icons/userMembership.png"
 import { useState, useEffect } from 'react'
 import errorUser from "../icons/warning.png"
 import axios from 'axios'
+import RecordPayment from '../components/RecordPayment'
 
 const Incomes = () => {
     
@@ -21,6 +22,7 @@ const Incomes = () => {
       const [otherIncome, setOtherIncome] = useState(true)
       const [actualDate, setActualDate] = useState("") 
       const [warning, setWarning] = useState(false)
+      const [showRecordPayment, setShowRecordPayment] = useState(false)
 
       function getActualDate() {
         const fechaActual = new Date();
@@ -64,6 +66,15 @@ const Incomes = () => {
               console.log(err)
              })
       }
+
+      const showLastStat = () => { 
+        setShowUserInfo(false)
+        setShowRecordPayment(true)
+      }
+
+     
+
+  
 
 
   return (
@@ -145,7 +156,7 @@ const Incomes = () => {
 
                             <div className='flex text-center justify-center'>
                               <p className='mt-4 text-blue-500 cursor-pointer mr-12' onClick={() => setShowUserInfo(false)}><b>Cancel</b></p>
-                              <p className='mt-4 text-blue-500 cursor-pointer mr-12'><b>Continue</b></p>
+                              <p className='mt-4 text-blue-500 cursor-pointer mr-12' onClick={() => showLastStat()}><b>Continue</b></p>
                             </div>
                    </div>
               ))
@@ -157,6 +168,8 @@ const Incomes = () => {
                   <img src={errorUser} fill="none" viewBox="0 0 24 24" className="inline-block w-8 h-8 mt-2 stroke-current"></img>
                   <p className='cursor-pointer text-sm text-blue-600 mt-6' onClick={() => setWarning(false)}><b>Try Again</b></p>
                  </div> : null}
+
+                 {showRecordPayment ? <RecordPayment userData={userSearchedData}/>  : null}
               
              
         </div>

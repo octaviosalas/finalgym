@@ -3,9 +3,12 @@ const { Schema } = mongoose;
 
 
 const incomeSchema = mongoose.Schema( { 
-   payer: { 
+   payerId: { 
     type: String,
     required: true
+   },
+   payerName: { 
+      type: String
    },
    dateOfPayment: { 
     type: Date,

@@ -1,4 +1,7 @@
 import * as React from 'react';
+import lupa from "../icons/lupa.png"
+import { useState } from 'react';
+import axios from 'axios'
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -104,6 +107,8 @@ export default function SideBar() {
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate()
 
+  const [dniUserSearched, setDniUserSearched] = useState("")
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -136,26 +141,32 @@ export default function SideBar() {
      }
   }
 
+  const searchUserByDni = () => { 
+    axios.get(`http://localhost:4000/getMemberByDni/${dniUserSearched}`)
+         .then((res) => { 
+          console.log(res.data)
+          navigate(`/memberData/${dniUserSearched}`)
+
+         })
+         .catch((err) => console.log(err))
+  }
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{
-              marginRight: 5,
-              ...(open && { display: 'none' }),
-            }}
-          >
+          <IconButton  color="inherit" aria-label="open drawer" onClick={handleDrawerOpen}  edge="start"
+            sx={{ marginRight: 5, ...(open && { display: 'none' }), }}>
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
             Recepcion Gym
           </Typography>
+          <Box sx={{ marginLeft: 'auto', display:"flex" }}>
+              <input placeholder='Dni..' className='border rounded-xl text-center text-black' onChange={(e) => setDniUserSearched(e.target.value)}></input>
+              <img className='h-8 ml-2 cursor-pointer' title='Search' src={lupa} onClick={() => searchUserByDni()}></img>
+          </Box>
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>

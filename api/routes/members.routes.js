@@ -1,12 +1,12 @@
 import express from "express"
 const membersRoutes = express.Router()
-import { addNewUser, getMemberByDni } from "../controllers/members.js"
+import { addNewUser, getMemberByDni, getAllMembers, updateMemberPay } from "../controllers/members.js"
 
 
-membersRoutes.get("/getAllMembers")
+membersRoutes.get("/getAllMembers", getAllMembers)
 membersRoutes.get("/getMemberData/:id")
 membersRoutes.post("/addNewMember", addNewUser)
-membersRoutes.put("/editMemberData/:id")
+membersRoutes.put("/editMemberData/:dni", updateMemberPay)
 membersRoutes.delete("/deleteMember")
 membersRoutes.get("/getMemberByDni/:dni", getMemberByDni)
 

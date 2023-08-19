@@ -12,6 +12,7 @@ import Providers from './pages/Providers'
 import Staff from './pages/Staff'
 import Config from './pages/Config'
 import Profile from './pages/Profile'
+import OneMemberData from './components/OneMemberData'
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
                 <Route path='/members' element={<Members/>}></Route>
                 <Route path='/addNewMember' element={<AddNewMember/>}></Route>
                 <Route path='/incomes' element={<Incomes/>}></Route>
+                <Route path='/memberData/:dni' element={<OneMemberData/>}></Route>
                 <Route path='/expenses' element={<Expenses/>}></Route>
                 <Route path='/classes' element={<Classes/>}></Route>
                 <Route path='/providers' element={<Providers/>}></Route>

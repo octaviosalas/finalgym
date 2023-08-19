@@ -1,6 +1,6 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { MaterialReactTable } from 'material-react-table';
-
+import axios from "axios"
 
 const data = [
   {
@@ -63,26 +63,43 @@ const data = [
 
 
 const Members = () => {
-  //should be memoized or stable
+
+  const [usersData, setUsersData] = useState([])
+  const [load, setLoad] = useState(true)
+   
+   useEffect(() => { 
+      axios.get("http://localhost:4000/getAllMembers")
+           .then((res) => { 
+            console.log(res.data)
+            setUsersData(res.data)
+            setTimeout(() => { 
+              setLoad(false)
+            }, 15000)
+           })
+           .catch((err) => { 
+            console.log(err)
+           })
+   }, [])
+   
   const columns = useMemo(
     () => [
       {
-        accessorKey: 'name.firstName', 
+        accessorKey: 'name', 
         header: 'Member',
         size: 150,
       },
       {
-        accessorKey: 'name.lastName',
+        accessorKey: 'dni',
         header: 'DNI',
         size: 150,
       },
       {
-        accessorKey: 'address', 
+        accessorKey: 'lastPay', 
         header: 'Last Pay',
         size: 200,
       },
       {
-        accessorKey: 'city',
+        accessorKey: 'dueDate',
         header: 'Expiration',
         size: 150,
       },
@@ -101,7 +118,7 @@ const Members = () => {
              <h1 className='text-blue-500'><b>All Members</b></h1>
          </div>
          <div className='mt-6'>
-            <MaterialReactTable columns={columns} data={data} className='table-bordered'/>;
+            <MaterialReactTable columns={columns} data={usersData} />;
          </div>
     
     </>

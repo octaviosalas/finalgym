@@ -101,7 +101,7 @@ const Members = () => {
              <h1 className='text-blue-500'><b>All Members</b></h1>
          </div>
          <div className='mt-6'>
-            <MaterialReactTable columns={columns} data={data} />;
+            <MaterialReactTable columns={columns} data={data} className='table-bordered'/>;
          </div>
     
     </>

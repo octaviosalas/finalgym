@@ -15,6 +15,7 @@ const IncomesStats = () => {
   const [amountMonthIncomes, setAmountMonthIncomes] = useState("")
   const [yearIncomes, setYearIncomes] = useState([])
   const [amountYearIncomes, setAmountYearIncomes] = useState("")
+  const [showTable, setShowTable] = useState(false)
 
 
   function getCurrentMonth() {
@@ -74,17 +75,23 @@ const IncomesStats = () => {
           setAmountYearIncomes(amountYearIncomes)
   }, [monthIncomes, currentMonth, yearIncomes])
 
+  const showTableNow = () => { 
+    setShowTable(true) 
+  }
+
  
   return (
     <>
     <div className='flex m-4'>
         
-          <AllIncomesEver amount={amountAllIncomes}  data={allIncomeData}/>
+          <AllIncomesEver amount={amountAllIncomes}  data={allIncomeData} showTableData={showTableNow}/>
          
           <MonthIncomes amount={amountMonthIncomes}  actualMonth={currentMonth} data={monthIncomes}/> 
          
           <AllYearIncomes amount={amountYearIncomes}  actualYear={currentYear} data={yearIncomes}/> 
 
+        {showTable ? <p>aaa</p> : null}
+  
     </div>
    
     </>

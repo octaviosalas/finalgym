@@ -51,6 +51,9 @@ const membersSchema = mongoose.Schema( {
     upToDate: { 
         type: Boolean,
         default: true
+    },
+    state: { 
+        type: String
     }
 
 })

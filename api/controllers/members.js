@@ -64,19 +64,27 @@ export const getAllMembers = async (req, res) => {
          })
 
 }
+
 export const updateMemberPay = async (req, res) => { 
-    
-  const {dni} = req.params
-  console.log(dni)
+  const { dni } = req.params;
+  const { paymentDate } = req.body;
 
-   try {
-       await Members.findOneAndUpdate({dni: dni}, { 
-        lastPay: req.body.paymentDate,
-        debtor: false
-       })
-       res.json({message:"The task was marked as Done! Congratulations"})
-   } catch (err) {
-      res.send(err)
-   }
+  try {
+      const dueDate = new Date(new Date(paymentDate).getTime() + 30 * 24 * 60 * 60 * 1000);
+      const formattedDueDate = dueDate.toISOString().split('T')[0]; // Formatting to "YYYY-MM-DD"
+
+      const updatedMember = await Members.findOneAndUpdate(
+          { dni: dni }, 
+          { 
+              lastPay: paymentDate,
+              debtor: false,
+              dueDate: formattedDueDate
+          },
+          { new: true }
+      );
+
+      res.json({ message: "Payment updated successfully", updatedMember });
+  } catch (err) {
+      res.status(500).json({ error: err.message });
+  }
 }
-

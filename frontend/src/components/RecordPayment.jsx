@@ -6,6 +6,7 @@ import userPay from "../icons/userPay.png"
 import debtUser from "../icons/debtUser.png"
 import userMembership from "../icons/userMembership.png"
 import axios from 'axios'
+import {useNavigate} from "react-router-dom"
 
 
 const RecordPayment = ({userData}) => {
@@ -16,7 +17,8 @@ const RecordPayment = ({userData}) => {
       const [userId, setUserId] = useState("")
       const [userName, setUserName] = useState("")
       const [userDni, setUserDni] = useState("")
-   
+      const [backendMsg, setBackendMsg] = useState("")
+      const navigate = useNavigate()
 
       useEffect(() => { 
          if(membershipChoosen === "Free Gym") { 
@@ -42,16 +44,7 @@ const RecordPayment = ({userData}) => {
          })
       }, [])
 
-    /*  useEffect(() => { 
-          const nextDueDateOfMember = (paymentDate) => { 
-            const actualPay = new Date (paymentDate)
-            actualPay.setMonth(actualPay.getMonth() + 1)
-            return actualPay.toISOString().slice(0, 10)
-          }
-          const dayOfPayment = paymentDate
-          const nextPay = nextDueDateOfMember(dayOfPayment)
-          console.log(nextPay)
-      }, [paymentDate])*/
+ 
 
      const confirmNewPayment = () => { 
         const newPayData = ({ 
@@ -73,6 +66,10 @@ const RecordPayment = ({userData}) => {
        axios.put(`http://localhost:4000/editMemberData/${userDni}`, {paymentDate: paymentDate})  
             .then((res) => { 
                console.log(res.data)
+               setBackendMsg(res.data.message)
+               setTimeout(() => { 
+                 navigate("/members")
+               }, 1500)
             })   
             .catch((err) => { 
                console.log(err)
@@ -124,7 +121,9 @@ const RecordPayment = ({userData}) => {
                   <div className='flex text-center justify-center'>
                       <button className='mt-4 text-white cursor-pointer mr-12 bg-blue-500 hover:bg-white hover:text-blue-500' onClick={() => confirmNewPayment()}><b>Confirm</b></button>
                    </div>
-
+      </div>
+      <div className='mt-6'>
+        <p className='text-blue-500'><b>{backendMsg}</b></p> 
       </div>
     </div>
   )

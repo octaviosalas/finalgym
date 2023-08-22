@@ -1,66 +1,7 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { MaterialReactTable } from 'material-react-table';
+import { TableCell } from '@mui/material';
 import axios from "axios"
-
-const data = [
-  {
-    name: {
-      firstName: 'John',
-      lastName: 'Doe',
-    },
-    address: '261 Erdman Ford',
-    city: 'East Daphne',
-    state: 'Kentucky',
-  },
-  {
-    name: {
-      firstName: 'Jane',
-      lastName: 'Doe',
-    },
-    address: '769 Dominic Grove',
-    city: 'Columbus',
-    state: 'Ohio',
-  },
-  {
-    name: {
-      firstName: 'Joe',
-      lastName: 'Doe',
-    },
-    address: '566 Brakus Inlet',
-    city: 'South Linda',
-    state: 'West Virginia',
-  },
-  {
-    name: {
-      firstName: 'Kevin',
-      lastName: 'Vandy',
-    },
-    address: '722 Emie Stream',
-    city: 'Lincoln',
-    state: 'Nebraska',
-  },
-  {
-    name: {
-      firstName: 'Joshua',
-      lastName: 'Rolluffs',
-    },
-    address: '32188 Larkin Turnpike',
-    city: 'Charleston',
-    state: 'South Carolina',
-  },
-  {
-    name: {
-      firstName: 'Joshua',
-      lastName: 'Rolluffs',
-    },
-    address: '32188 Larkin Turnpike',
-    city: 'Charleston',
-    state: 'South Carolina',
-  },
-];
-
-
-
 
 const Members = () => {
 
@@ -80,11 +21,13 @@ const Members = () => {
             console.log(err)
            })
    }, [])
+
    
-  const columns = useMemo(
+   
+   const columns = useMemo(
     () => [
       {
-        accessorKey: 'name', 
+        accessorKey: 'name',
         header: 'Member',
         size: 150,
       },
@@ -94,7 +37,7 @@ const Members = () => {
         size: 150,
       },
       {
-        accessorKey: 'lastPay', 
+        accessorKey: 'lastPay',
         header: 'Last Pay',
         size: 200,
       },
@@ -107,9 +50,8 @@ const Members = () => {
         accessorKey: 'state',
         header: 'State',
         size: 150,
-      },
-    ],
-    [],
+      },],
+      []
   );
 
   return ( 
@@ -117,7 +59,7 @@ const Members = () => {
          <div className='mt-2'> 
              <h1 className='text-blue-500'><b>All Members</b></h1>
          </div>
-         <div className='mt-6'>
+         <div className='mt-6 2xl:w-[1200px] xl:w-[1100px] lg:w-[900px] md:w-[800px] md:ml-[20px] sm:w-[600px] sm:ml-[20px] xxs:w-[500px] xxs:ml-[20px] '>
             <MaterialReactTable columns={columns} data={usersData} />;
          </div>
     

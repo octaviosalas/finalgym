@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react'
 import errorUser from "../icons/warning.png"
 import axios from 'axios'
 import RecordPayment from '../components/RecordPayment'
+import { Link } from 'react-router-dom'
 
 const Incomes = () => {
     
@@ -83,6 +84,7 @@ const Incomes = () => {
                 <div class="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img class="mx-auto h-24 w-auto" src={addIncome} alt="Your Company"/>
                     <h2 class="mt-10  text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Record Payment</h2>
+                   <Link to={"/allIncomes"}><p className='text-blue-500 underline cursor-pointer' title='View Stats'>View Incomes</p></Link> 
                 </div>
 
              {memberIncome ? <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">

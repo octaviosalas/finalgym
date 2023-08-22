@@ -49,7 +49,8 @@ const AddNewMember = () => {
             adress: adress,
             dueDate: expirationDate,
             membership: membership,
-            medicalRestrictions: medicalRestrictions
+            medicalRestrictions: medicalRestrictions,
+            state: "Active"
         })
         axios.post("http://localhost:4000/addNewMember", userData)
              .then((res) => { 

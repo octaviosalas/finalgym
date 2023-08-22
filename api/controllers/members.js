@@ -2,7 +2,7 @@ import Members from "../models/members.js";
 
 export const addNewUser = async (req, res) => { 
 
-    const {name, telephone, dni, gender, email, startDate, adress, dueDate, membership, medicalRestrictions} = req.body
+    const {name, telephone, dni, gender, email, startDate, adress, dueDate, membership, medicalRestrictions, state} = req.body
     console.log(req.body)
 
     await Members.findOne({email})
@@ -23,7 +23,8 @@ export const addNewUser = async (req, res) => {
                             email: email,
                             lastPay: startDate,
                             membership: membership,
-                            medicalRestrictions: medicalRestrictions
+                            medicalRestrictions: medicalRestrictions,
+                            state: state
                         })
                         newMember.save()
                                  .then((member) => { 
@@ -67,7 +68,8 @@ export const getAllMembers = async (req, res) => {
 
 export const updateMemberPay = async (req, res) => { 
   const { dni } = req.params;
-  const { paymentDate } = req.body;
+  const { paymentDate, membership } = req.body;
+  console.log(req.body)
 
   try {
       const dueDate = new Date(new Date(paymentDate).getTime() + 30 * 24 * 60 * 60 * 1000);
@@ -78,6 +80,7 @@ export const updateMemberPay = async (req, res) => {
           { 
               lastPay: paymentDate,
               debtor: false,
+              membership: membership,
               dueDate: formattedDueDate
           },
           { new: true }

@@ -63,7 +63,7 @@ const RecordPayment = ({userData}) => {
                console.log(err)
             })
 
-       axios.put(`http://localhost:4000/editMemberData/${userDni}`, {paymentDate: paymentDate})  
+       axios.put(`http://localhost:4000/editMemberData/${userDni}`, {paymentDate: paymentDate, membership: membershipChoosen})  
             .then((res) => { 
                console.log(res.data)
                setBackendMsg(res.data.message)

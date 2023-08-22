@@ -11,7 +11,7 @@ const incomeSchema = mongoose.Schema( {
       type: String
    },
    dateOfPayment: { 
-    type: Date,
+    type: String,
     required: true
    },
    amountPaid: { 

@@ -4,9 +4,13 @@ import { useEffect, useState } from 'react'
 import AllIncomesEver from './AllIncomesEver'
 import MonthIncomes from './MonthIncomes'
 import AllYearIncomes from './AllYearIncomes'
+import TableAllIncomes from './TableAllIncomes'
+import TableMonthIncomes from './TableMonthIncomes'
+import TableYearIncomes from './TableYearIncomes'
 
 const IncomesStats = () => {
 
+  const [loadingPage, setLoadingPage] = useState(true)
   const [currentMonth, setCurrentMonth] = useState(0); 
   const [currentYear, setCurrentYear] = useState(0)
   const [allIncomeData, setAllIncomeData] = useState([]) //Todos los ingresos historicos(array completo)
@@ -15,7 +19,9 @@ const IncomesStats = () => {
   const [amountMonthIncomes, setAmountMonthIncomes] = useState("")
   const [yearIncomes, setYearIncomes] = useState([])
   const [amountYearIncomes, setAmountYearIncomes] = useState("")
-  const [showTable, setShowTable] = useState(false)
+  const [showNowAllIncomesTable, setShowNowAllIncomesTable] = useState(false)
+  const [showNowMonthincomesTable, setShowNowMonthincomesTable] = useState(false)
+  const [showNowYearIncomes, setShowNowYearIncomes] = useState(false)
 
 
   function getCurrentMonth() {
@@ -41,6 +47,9 @@ const IncomesStats = () => {
             setAllIncomeData(docs)
             const sumAmount = docs.reduce((accumulator, obj) => accumulator + obj.amountPaid, 0);
             setAmountAllIncomes(sumAmount)
+            setTimeout(() => { 
+               setLoadingPage(false)
+            }, 1500)
           })
           .catch((err) => { 
             console.log(err)
@@ -75,22 +84,55 @@ const IncomesStats = () => {
           setAmountYearIncomes(amountYearIncomes)
   }, [monthIncomes, currentMonth, yearIncomes])
 
-  const showTableNow = () => { 
-    setShowTable(true) 
+  const showAllIncomesTable = () => { 
+    setShowNowAllIncomesTable(true) 
+  }
+
+  const dontShowTableAllIncomes = () => { 
+    setShowNowAllIncomesTable(false) 
+  }
+
+  const showMonthIncomesTable = () => {
+    setShowNowMonthincomesTable(true)
+  }
+
+  const dontShowMonthIncomesTable = () => { 
+    setShowNowMonthincomesTable(false) 
+  }
+
+  const showYearIncomesTable = () => { 
+    setShowNowYearIncomes(true)
+  }
+
+  const dontShowYearIncomesTable = () => { 
+    setShowNowYearIncomes(false)
   }
 
  
   return (
     <>
-    <div className='flex m-4'>
+    <div className=' m-4'>
         
-          <AllIncomesEver amount={amountAllIncomes}  data={allIncomeData} showTableData={showTableNow}/>
+         {loadingPage ? 
+          <div>
+            <span className="loading loading-ball loading-lg"></span> 
+            <span className="loading loading-ball loading-lg"></span>
+            <span className="loading loading-ball loading-lg"></span>
+        </div> 
+        : 
+        <div className='flex mt-4'> 
+        <AllIncomesEver amount={amountAllIncomes}  data={allIncomeData} showTableData={showAllIncomesTable} />
          
-          <MonthIncomes amount={amountMonthIncomes}  actualMonth={currentMonth} data={monthIncomes}/> 
-         
-          <AllYearIncomes amount={amountYearIncomes}  actualYear={currentYear} data={yearIncomes}/> 
+         <MonthIncomes amount={amountMonthIncomes}  actualMonth={currentMonth} data={monthIncomes} showTableData={showMonthIncomesTable}/> 
+        
+         <AllYearIncomes amount={amountYearIncomes}  actualYear={currentYear} data={yearIncomes} showTableData={showYearIncomesTable}/>
+        </div> }
+        
 
-        {showTable ? <p>aaa</p> : null}
+        {showNowAllIncomesTable ? <TableAllIncomes data={allIncomeData} amount={amountAllIncomes} close={dontShowTableAllIncomes}/> : null}
+        {showNowMonthincomesTable ? <TableMonthIncomes data={monthIncomes} amount={amountMonthIncomes} close={dontShowMonthIncomesTable}/> : null}
+        {showNowYearIncomes ? <TableYearIncomes data={yearIncomes} amount={amountYearIncomes} close={dontShowYearIncomesTable}/> : null}
+        
   
     </div>
    

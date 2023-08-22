@@ -2,7 +2,7 @@ import React from 'react'
 import axios from "axios"
 import { useEffect, useState } from 'react'
 
-const MonthIncomes = ({amount, back, actualMonth, data}) => {
+const MonthIncomes = ({amount, actualMonth, data, showTableData}) => {
     console.log(data)
   return (
     <> 
@@ -12,7 +12,7 @@ const MonthIncomes = ({amount, back, actualMonth, data}) => {
                         <div className="stat-title font-bold text-black"><b>Total Incomes about Month {actualMonth}</b></div>
                         <div className="stat-value">{amount} USD</div>
                         <div className="stat-actions">
-                          <button className="btn btn-sm btn-success  bg-blue-200">View Detail</button>
+                          <button className="btn btn-sm btn-success  bg-blue-200" onClick={showTableData}>View Detail</button>
                         </div>
                    </div>
             </div>   

@@ -2,6 +2,7 @@ import React, { useMemo, useState, useEffect } from 'react';
 import { MaterialReactTable } from 'material-react-table';
 import { TableCell } from '@mui/material';
 import axios from "axios"
+import { createTheme, ThemeProvider } from '@mui/material';
 
 const Members = () => {
 
@@ -75,6 +76,13 @@ const Members = () => {
       []
   );
 
+  const darkTheme = createTheme({ 
+    palette: { 
+        mode: "dark",
+    }
+   })
+
+
   return ( 
     <>
        { load ?  <div>
@@ -83,11 +91,13 @@ const Members = () => {
             <span className="loading loading-ball loading-lg"></span>
         </div> :
         <>
-          <div className='mt-2'> 
+          <div className='mb-6'> 
               <h1 className='text-blue-500'><b>All Members</b></h1>
           </div>
-          <div className='mt-6 2xl:w-[1200px] xl:w-[1100px] lg:w-[900px] md:w-[800px] md:ml-[20px] sm:w-[600px] sm:ml-[20px] xxs:w-[500px] xxs:ml-[20px] '>
-              <MaterialReactTable columns={columns} data={usersData} />;
+          <div className='mt-8 2xl:w-[1200px] xl:w-[1100px] lg:w-[900px] md:w-[800px] md:ml-[20px] sm:w-[600px] sm:ml-[20px] xxs:w-[500px] xxs:ml-[20px] '>
+             <ThemeProvider theme={darkTheme}>
+               <MaterialReactTable columns={columns} data={usersData} />;
+              </ThemeProvider>
           </div>        
         </>
 }

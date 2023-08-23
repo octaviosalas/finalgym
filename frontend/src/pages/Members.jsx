@@ -79,6 +79,9 @@ const Members = () => {
   const darkTheme = createTheme({ 
     palette: { 
         mode: "dark",
+        text: { 
+          default: "#2ECCFA"
+        }
     }
    })
 

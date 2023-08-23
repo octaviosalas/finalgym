@@ -7,11 +7,14 @@ const providersSchema = mongoose.Schema( {
         type: String,
         required: true
     }, 
+    cuit: { 
+        type: String
+    },
     firstPurchaseDate: { 
         type: String,
         required: true,
     },
-    location: { 
+    companyImage: { 
         type: String, 
         required: true
     },
@@ -23,7 +26,17 @@ const providersSchema = mongoose.Schema( {
     },
     telephone: { 
         type: Number
+    },
+    mail: { 
+        type: String
+    },
+    purchaseDeatil:{
+        type: [String] 
+    },
+    providerType: { 
+        type: String
     }
+
 })
 
 const Providers = mongoose.model("Providers", providersSchema)

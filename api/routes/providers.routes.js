@@ -1,10 +1,11 @@
 import express from "express"
 const providersRoutes = express.Router()
+import { addProviders, getAllProviders, getOneProvider } from "../controllers/providers.js"
 
 
-providersRoutes.get("/getAllProviders")
-providersRoutes.get("/getOneProvider/:id")
-providersRoutes.post("/createNewProvider")
+providersRoutes.get("/getAllProviders", getAllProviders)
+providersRoutes.get("/getOneProvider/:providerChoosen", getOneProvider)
+providersRoutes.post("/createNewProvider", addProviders)
 providersRoutes.put("/editProviderData/:id")
 providersRoutes.delete("/deleteProvider")
 

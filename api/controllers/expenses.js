@@ -23,3 +23,13 @@ export const saveNewExpense = async (req, res) => {
         console.log(error)
     }
 }
+
+export const getAllExpenses = async (req, res) => { 
+    Expenses.find()
+            .then((ex) => { 
+                res.send(ex)
+            })
+            .catch((err) => { 
+                console.log(err)
+            })
+}

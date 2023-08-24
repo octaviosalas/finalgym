@@ -14,6 +14,7 @@ import Config from './pages/Config'
 import Profile from './pages/Profile'
 import OneMemberData from './components/OneMemberData'
 import IncomesStats from './components/IncomesStats'
+import AllExpenses from './components/AllExpenses'
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
                 <Route path='/config' element={<Config/>}></Route>
                 <Route path='/profile' element={<Profile/>}></Route>
                 <Route path='/allIncomes' element={<IncomesStats/>}></Route>
+                <Route path='/allExpenses' element={<AllExpenses/>}></Route>
             </Routes>
 
       </div>

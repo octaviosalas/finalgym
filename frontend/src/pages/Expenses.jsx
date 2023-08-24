@@ -80,6 +80,7 @@ const Expenses = () => {
             }, 500)
      }
 
+    
 
 
   
@@ -98,8 +99,8 @@ const Expenses = () => {
                         <button type="submit" class="flex w-full m-6 justify-center rounded-md bg-blue-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-600 focus-visible:outline
                         focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" onClick={() => setMemberIncome(false)}>New Expense</button>
 
-                        <button className='flex w-full m-6 justify-center rounded-md bg-blue-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-600 focus-visible:outline
-                        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'>View Expenses</button>
+                       <Link to={"/allExpenses"}><button className='flex w-full m-6 justify-center rounded-md bg-blue-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-600 focus-visible:outline
+                        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600' >View Expenses</button></Link> 
                     </div>
           
                    <p class="mt-10 text-center text-sm text-gray-500">

@@ -111,7 +111,7 @@ const Expenses = () => {
               { showInput ? <div className='mt-6'>
                      <label className='text-black font-bold mr-6'> Provider</label>
                      <div className='flex'>
-                        <select class="block w-full rounded-md border border-blue-500 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 text-center placeholder:text-gray-400 focus:ring-2 
+                        <select  class="block w-full rounded-md border border-blue-500 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 text-center placeholder:text-gray-400 focus:ring-2 
                         focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6" value={providerChoosen} onChange={(e) => setProviderChoosen(e.target.value)}>
                           <option></option>
                           {providers.map((p) => ( 
@@ -131,7 +131,7 @@ const Expenses = () => {
                           <div className="stats shadow flex flex-col">
                                 <div className="stat ">
                                     <div className="stat-figure text-secondary">
-                                    <div className="avatar"><div className="w-10 rounded-full"><img src={p.companyImage}/></div></div>
+                                      <div className="avatar"><div className="w-10 rounded-full"><img src={p.companyImage}/></div></div>
                                     </div>
                                     <div className="stat-title text-sm">Provider</div>
                                     <div className="stat-value text-lg">{p.company}</div>                          
@@ -174,7 +174,7 @@ const Expenses = () => {
                   <p className='cursor-pointer text-sm text-blue-600 mt-6' onClick={() => setWarning(false)}><b>Try Again</b></p>
                  </div> : null}
 
-                 {showRecordPayment ? <RecordExpense providerImg={providerImage}/>  : null}
+                 {showRecordPayment ? <RecordExpense providerName={providerChoosen} providerImg={providerImage}/>  : null}
               
              
         </div>

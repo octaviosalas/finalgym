@@ -76,14 +76,15 @@ const Members = () => {
       []
   );
 
-  const darkTheme = createTheme({ 
-    palette: { 
-        mode: "dark",
-        text: { 
-          default: "#2ECCFA"
-        }
+  const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+    text: {
+      default: "#29ABCA",
+
     }
-   })
+  }
+});
 
 
   return ( 
@@ -111,3 +112,4 @@ const Members = () => {
 };
 
 export default Members;
+

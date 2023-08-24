@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 
 const expensesSchema = mongoose.Schema( { 
-    addressee: { 
+    addressee: { //destinatario
     type: String,
     required: true
    },

@@ -8,11 +8,8 @@ import * as React from 'react';
 const AllExpenses = () => {
 
     const [expenses, setExpenses] = useState([])
-    
-
-
-      
-
+    const [load, setLoad] = useState(true)
+  
     const columns = useMemo(
         () => [
           {
@@ -44,7 +41,7 @@ const AllExpenses = () => {
                       <dialog id={row.original._id} className="modal">
                         <form method="dialog" className="modal-box">
                             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                            <p className="py-4">{row.original.reasonOfPay}</p>
+                            <p className="py-4 text-center font-bold">{row.original.reasonOfPay}</p>
                         </form>
                         </dialog>
                </div>
@@ -58,6 +55,9 @@ const AllExpenses = () => {
              .then((res) => { 
                 console.log(res.data)
                 setExpenses(res.data)
+                setTimeout(() => { 
+                   setLoad(false)
+                }, 1200)
                  })
               .catch((err) => { 
                   console.log(err)
@@ -67,9 +67,18 @@ const AllExpenses = () => {
 
   return (
     <div>  
-         <div className='2xl:w-[900px]'>
-             <MaterialReactTable columns={columns} data={expenses} />;
-         </div>
+         {load ? 
+          <div>
+              <span className="loading loading-ball loading-lg"></span> 
+              <span className="loading loading-ball loading-lg"></span>
+              <span className="loading loading-ball loading-lg"></span>
+          </div>
+            : 
+            <div className='2xl:w-[900px]'>
+              <MaterialReactTable columns={columns} data={expenses} />;
+           </div>
+            
+         }
     </div>
   )
 }

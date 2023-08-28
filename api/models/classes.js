@@ -8,16 +8,22 @@ const classesSchema = mongoose.Schema( {
     required: true
    },
    teacher: { 
-    type: Date,
+    type: String,
     required: true
    },
    schedule: { 
-    type: Number,
-    required: true
-   },
-   image: { 
     type: String,
     required: true
+   },
+   img: { 
+    type: String,
+    required: true
+   },
+   day: { 
+      type: String
+   },
+   shift: { 
+      type: String
    }
 
 

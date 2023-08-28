@@ -36,7 +36,7 @@ const AllExpenses = () => {
             size: 200,
             Cell: ({ row }) => (
                  <div>
-                    <button className="btn" onClick={()=> document.getElementById(row.original._id).showModal()}>open modal</button>
+                    <button className="btn" onClick={()=> document.getElementById(row.original._id).showModal()}>Deatil</button>
                     {console.log(row.original._id)}
                       <dialog id={row.original._id} className="modal">
                         <form method="dialog" className="modal-box">

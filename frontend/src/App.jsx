@@ -25,6 +25,7 @@ function App() {
       <div className='app'>
          <Sidebar />
             <Routes>
+                <Route path='/' element={<Main/>}></Route>
                 <Route path='/main' element={<Main/>}></Route>
                 <Route path='/members' element={<Members/>}></Route>
                 <Route path='/addNewMember' element={<AddNewMember/>}></Route>

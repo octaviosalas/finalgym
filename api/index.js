@@ -11,6 +11,7 @@ import classesAndMembershipsRoutes from "./routes/classesAndMemberships.routes.j
 import connectDataBase from "./database/connectdb.js"
 
 
+
 const app = express()
 const port = 4000
 
@@ -38,5 +39,6 @@ app.get('/', (req, res) => {
 app.listen(4000, () => { 
     console.log(`Sever NodeJs at AdminGymApp is connected Correctly at Port ${port}`)
     connectDataBase()
+   
  
 })
